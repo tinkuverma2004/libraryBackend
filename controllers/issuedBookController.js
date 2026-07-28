@@ -60,23 +60,3 @@ exports.issuedBook = async (req, res) => {
 };
 
 
-exports.getMyIssuedBooks = async (req, res) => {
-  try {
-    const { userId } = req.params;
-
-    const books = await issuedBook
-      .find({ userId })
-      .populate("bookId")
-      .sort({ issueDate: -1 });
-
-    res.status(200).json({
-      success: true,
-      data: books,
-    });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Something went wrong",
-    });
-  }
-};

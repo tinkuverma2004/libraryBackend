@@ -168,4 +168,23 @@ const searchUser = async (req, res) => {
     });
   }
 };
-module.exports = {addUser , loginUser ,updateUser ,searchUser}
+
+ const UserHistory =async(req,res)=>{
+  try{
+   const history=await issuedBook.find({
+     userId: req.user.id
+   }).populate('bookId').populate('userId')
+    res.status(200).send({
+      success:true,
+      data:history,
+      message:"userid found successfully"
+    })
+  }
+  catch(err){
+    res.status(400).send({
+      success:false,
+      message:err.message
+    })
+  }
+}
+module.exports = {addUser , loginUser ,updateUser ,searchUser , UserHistory}
