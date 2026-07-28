@@ -2,9 +2,9 @@ const express = require("express")
 const router = express.Router()
 const upload = require("../middleware/upload")
 const { getBooks, addBook, deleteBook, updateBook, availableBooks, returnedBooks, returnedBookss, getOverDueBooks } = require("../controllers/bookControler")
-const { issuedBook } = require("../controllers/issuedBookController")
+const { issuedBook,getMyIssuedBooks } = require("../controllers/issuedBookController")
 
-
+router.get("/my-issued-books/:userId", getMyIssuedBooks);
 
 router.get("/getbooks", getBooks);
 
